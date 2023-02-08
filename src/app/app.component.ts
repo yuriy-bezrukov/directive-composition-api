@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'directive-composition-api';
+
+  public readonly searchForm = new FormGroup({
+    text: new FormControl<string>('', {
+      nonNullable: true
+    }),
+  });
+
+  public readonly searchText$ = this.searchForm.controls.text.valueChanges; 
+
+  public testArray = new Array(1000);
+  public isCompositionVersion = true;
+  public showCard = true;
+
 }
